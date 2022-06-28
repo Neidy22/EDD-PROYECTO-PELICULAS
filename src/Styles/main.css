@@ -1,0 +1,220 @@
+:root{
+    
+    --subtitle-text-color:rgb(49,164,243);
+    --subtitle2-text-color:rgb(72,206,252);
+    --text-color:rgb(244,246,246);
+    --title-text-color:#01FFFF;
+
+    --light-container-color:rgb(7,120,251);
+    --dark-container-capa2:rgb(176,11,103);
+    --dark-container-capa1:rgb(101,17,86);
+    --dark-container-capa0:rgb(20,15,44);
+  
+
+}
+
+
+/*-----------------------------------
+            Formatos
+-------------------------------------*/
+
+*{
+    box-sizing: border-box;
+}
+
+body{
+    font-family: Arial, Arial, Helvetica, sans-serif;
+    font-size:16px;
+    padding: 0;
+    margin:0;
+    /*Espacio entre cada renglon*/
+    line-height: 1.5;
+
+    background-color:var(--dark-container-capa0);
+}
+
+#logo{
+    background-image: url(/src/Styles/img/logo.png);
+    height: 100px;
+    width:100px;
+    position: left;
+    background-size: cover;
+   
+}
+
+.title{
+    text-align: center;
+    font-size: 35px;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color:var(--title-text-color);
+
+}
+
+.subtitle{
+    color:var(--subtitle-text-color);
+}
+
+.subtitle2{
+    color:var(--subtitle2-text-color);
+}
+
+.text{
+    color:var(--text-color);
+}
+
+.capa1{
+    background-color: var(--dark-container-capa2);
+    width: 80%;
+    margin-left: 10%;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+/*-------------NAV BAR-------------*/
+nav ul {
+    display:flex;
+    align-items: center;
+    /*para que quede un elemento a la izq, otro en el centro y otro a la derecha*/
+    justify-content: space-between;
+    padding: 0 5%;
+}
+
+nav ul{
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/*para los hipervínculos*/
+nav ul li > a{
+    display: block; /*para poder manipular el padding con más facilidad*/
+    position: relative;
+    padding: 20px 15px 10px 15px;
+    text-decoration: none;
+
+    color:white;
+}
+
+nav ul li .link::before{
+    /*el before permitirá darle efecto subrayado a los elementos de la barra de navegación*/
+    content:'';
+    position:absolute;
+    display: block;
+    left:0;
+    bottom: 0;
+    width:100%;
+    height: 2px;
+    transform:scaleX(0);
+    transition: transform 0.3s ease;
+
+    background-color: white;
+     
+}
+
+/*para que el selector anterior se ejecute con el hover*/
+nav ul li .link:hover::before{
+    transform:scaleX(1);
+}
+
+
+
+/*-----------------------------------
+            LOGIN
+-------------------------------------*/
+form{
+    
+    
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    padding: 20px;
+    margin-top: 50px;
+    margin-left:39%;
+   
+
+    padding: 1em;
+    border: 1px solid #CCC;
+    border-radius: 1em;
+
+    background-color: var(--dark-container-capa1);
+}
+label{
+    display: inline-block;
+    width: 150px;
+    text-align: left;
+    margin-top: 20px;
+}
+
+button{
+    padding-left: 10px;
+    margin-top: 20px;
+    margin-left: 10em;
+    display: inline-flex;
+    align-items: center;
+    font-size: 14px;
+}
+
+.textbox{
+    width: 100%;
+}
+
+
+
+/*-----------------------------------
+            SECCION DE GRAFOS
+-------------------------------------*/
+.grafo{
+    border:1px solid black;
+    width:90%;
+    margin:5px;
+    padding:5px;
+    margin-left: 5%;
+
+
+    background:silver;
+
+}
+
+/*-----------------------------------
+            SECCION DE carga masiva
+-------------------------------------*/
+.masivas-container{
+    float:left;
+    border:1px solid green;
+    width:30%;
+    margin:10px;
+    margin-left: 30px;
+    padding: 10px;
+    background: #F4CAAB;
+}
+
+.masivas-container:hover{
+    background:#E6C570;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

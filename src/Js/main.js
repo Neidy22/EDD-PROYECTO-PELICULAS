@@ -1,0 +1,59 @@
+import SimpleList from "../Structures/SimpleList.js";
+import Client from "../Objects/Client.js";
+import Node from "../Objects/Node.js";
+
+
+//creo mi variable de local storge
+const myStorage=window.localStorage;
+//creo las instancias de las estructuras a utilizar
+const clients=new SimpleList();
+var user;
+myStorage.setItem("clients",clients);
+
+
+/*-------------------------------
+    CREACIÓN DEL USER ADMIN
+--------------------------------*/
+const admin=new Client(2354168452525,"WIlfred Perez","EDD","wilfredP@gmail.com","123","+502 (123) 123-4567")
+clients.addNew(admin)
+
+
+/*--------------------------------
+        VERIFICAR LOGIN
+--------------------------------*/
+
+
+const form=document.getElementById("formulario");
+    
+    form.onsubmit = function(e){
+   
+      e.preventDefault();
+      const username = document.getElementById("username").value;
+      const pass=document.getElementById("pass").value;
+      const isAdmin=document.getElementById("rol").checked;
+      form.reset();
+      //console.log(username);
+      //console.log(pass);
+      //console.log(isAdmin);
+      
+      if(isAdmin){
+        if(username=="EDD" && pass=="123"){
+            alert("Usuario Administrador Verificado")
+            window.location.href="Views/Admin.html"
+
+        }else{
+            alert("Acceso administrador denegado")
+        }
+      }else{
+        user=clients.search(username,pass);
+        if(user!=null){
+            alert("Bienvenido "+username)
+        }else{
+            alert("No se encontró un usuario válido, vuelve a intentarlo!")
+        }
+      }
+      
+      
+  
+    }
+
