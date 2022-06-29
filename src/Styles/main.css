@@ -6,10 +6,14 @@
     --title-text-color:#01FFFF;
 
     --light-container-color:rgb(7,120,251);
+
     --dark-container-capa2:rgb(176,11,103);
     --dark-container-capa1:rgb(101,17,86);
     --dark-container-capa0:rgb(20,15,44);
+
+    --transparent-container-capa2:#b00b6777;
   
+    --fosfo-hover1:#14faff;
 
 }
 
@@ -63,12 +67,17 @@ body{
 }
 
 .capa1{
-    background-color: var(--dark-container-capa2);
-    width: 80%;
-    margin-left: 10%;
+    background-color: var(--transparent-container-capa2);
+    width: 90%;
+    margin-left: 5%;
+    
+
 
 }
-
+.capa2{
+    background-color: var(--dark-container-capa2);
+    
+}
 
 
 
@@ -186,23 +195,45 @@ button{
 }
 
 /*-----------------------------------
-            SECCION DE carga masiva
+        SECCION DE CARGA MASIVA
 -------------------------------------*/
 .masivas-container{
     float:left;
-    border:1px solid green;
-    width:30%;
-    margin:10px;
-    margin-left: 30px;
+    border:1px solid var(--light-container-color);
+    width:20%;
+    margin-left: 5%;
     padding: 10px;
-    background: #F4CAAB;
+
+    font-weight: bold;
+    color:var(--text-color);
+    text-align: center;
+    
+
+    background: var(--light-container-color);
 }
 
 .masivas-container:hover{
-    background:#E6C570;
+    background:var(--fosfo-hover1);
+    color:blue;
+}
+
+.file-select {
+    position: relative;
+    display: inline-block;
+   
+  }
+  
+
+  
+.file-select input[type="file"] {
+    opacity: 0%;
+    width: 100%;
+
+    display: inline-block;
 }
 
 
+  
 
 
 

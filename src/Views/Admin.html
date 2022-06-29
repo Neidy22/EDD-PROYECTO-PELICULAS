@@ -12,10 +12,43 @@
     <nav>
         <ul>
             <li class="link" id="logo"></li>
-        </ul>
-        <ul>
-            <li class="link"><button>Blockchain</button></li>
+            <li ><a href="#" class="link">BLOCKCHAIN</a></li>
+            <li ><a href="../index.html" class="link">LOGOUT</a></li>
         </ul>
     </nav>
+
+    <div class="capa1"> 
+        <div class="capa2 masivas-container file-select" id="cmClientes">
+            Carga Masiva Clientes
+            <input type="file"  name="cmClientes">
+            <br>
+        </div>
+        <div class="capa2 masivas-container file-select" id="cmPeliculas">
+            Carga Masiva Películas
+            <input type="file"  name="cmPeliculas">
+            <br>
+        </div>
+        <div class="capa2 masivas-container file-select" id="cmActores">
+            Carga Masiva Actores
+            <input type="file"  name="cmActores">
+            <br>
+        </div>
+        <div class="capa2 masivas-container file-select" id="cmCategorias">
+            Carga Masiva Categorías
+            <input type="file" name="cmCategorias">
+            <br>
+        </div>
+    </div><br>
+        
+
+    <div class="capa1">
+        <div id="lienzo"></div>
+    </div>
+
+
+    <script src="//d3js.org/d3.v5.min.js"></script>
+    <script src="https://unpkg.com/@hpcc-js/wasm@0.3.11/dist/index.min.js"></script>
+    <script src="https://unpkg.com/d3-graphviz@3.0.5/build/d3-graphviz.js"></script>
+    
 </body>
 </html>

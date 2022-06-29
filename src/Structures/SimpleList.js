@@ -26,6 +26,22 @@ class SimpleList{
 
     }
 
+    addNewDown(data,id){
+        var nuevo=new Node(data)
+        nuevo.id=id
+        if(this.first==null){
+            this.first=nuevo
+        }else{
+            var aux=this.first
+            while(aux.down!=null){
+                aux=aux.down
+            }
+            aux.down=nuevo
+        }
+        this.size++
+
+    }
+
     addNewOrdered(data){
         var nuevo=new Node(data)
         nuevo.id=data.quantity
@@ -88,7 +104,7 @@ class SimpleList{
 
         doteCode+="    }\n"
         console.log(doteCode)
-        d3.select('#lista-simple').graphviz()
+        d3.select('#lienzo').graphviz()
             .width(1600)
             .height(600)
             .renderDot(doteCode);
