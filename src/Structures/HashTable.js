@@ -41,15 +41,36 @@ class HashTable{
     }
 
     getNode(key){
+
+        var iden=this.positionCalc(key);
         var aux=this.vector.first;
         
         while(aux!=null){
-            if(aux.id==key){
+            if(aux.id==iden){
                 return aux;
             }
             aux=aux.down;
         }
         return null;
+
+    }
+
+    positionCalc(key){
+        var pos;
+        var aux=key-this.size;
+        while(true){
+            if(key<this.size){
+                pos=key;
+                break;
+            }else if(aux<this.size){
+                pos=aux;
+                break;
+            }else{
+                aux=aux-this.size;
+            }
+        }
+
+        return pos
 
     }
 

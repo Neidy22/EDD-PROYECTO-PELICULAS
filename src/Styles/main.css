@@ -39,7 +39,7 @@ body{
     background-color:var(--dark-container-capa0);
 }
 
-#logo{
+#logo, #logo1, #logo2{
     background-image: url(/src/Styles/img/logo.png);
     height: 100px;
     width:100px;
@@ -292,7 +292,17 @@ scroll-page {
 
 
 
+/*-----------------------------------
+        HIDDE SECTIONS
+-------------------------------------*/
+.show{
+    display: block !important;
+}
 
+
+.menuAdmin, .menuCliente{
+    display: none;
+}
 
 
 

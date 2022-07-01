@@ -9,16 +9,17 @@
     <title>Moviecats</title>
 </head>
 <body>
-    
-    <nav>
+    <!--
+        MENU PRINCIPAL INICIA
+    -->
+    <nav class="menuPrincipal">
         <ul>
             <li><div id="logo"></div></li>
         </ul>
         
     </nav>
-
-       
-    <form  class="formulario " id="formulario" >
+   
+    <form  class="formulario  menuPrincipal" id="formulario" >
         <h1 class="title">LOGIN</h1><br>
         <h3 class="subtitle">¡Inicia sesión y descubre todo lo nuevo!</h3><br>
         <label class="subtitle2" for="username">Usuario: </label><br>
@@ -31,7 +32,73 @@
     </form>
 
 
-           
+    <!--
+        MENU ADMINISTRADOR INICIA
+    -->
+
+    <nav class="menuAdmin">
+        <ul>
+            <li class="link" id="logo1"></li>
+            <li ><a href="#" class="link">BLOCKCHAIN</a></li>
+            <li ><a href="#" class="link" id="logoutAdmin">LOGOUT</a></li>
+        </ul>
+    </nav>
+
+    <div class="capa1 menuAdmin"> 
+        <div class="capa2 masivas-container file-select" id="cmClientes">
+            Carga Masiva Clientes
+            <input type="file"  id="cmClients">
+            <br>
+        </div>
+        <div class="capa2 masivas-container file-select" id="cmPeliculas">
+            Carga Masiva Películas
+            <input type="file"  id="cmMovies">
+            <br>
+        </div>
+        <div class="capa2 masivas-container file-select" id="cmActores">
+            Carga Masiva Actores
+            <input type="file"  id="cmActors">
+            <br>
+        </div>
+        <div class="capa2 masivas-container file-select" id="cmCategorias">
+            Carga Masiva Categorías
+            <input type="file" id="cmCategory">
+            <br>
+        </div>
+    </div><br>
+        
+
+    <div class="scroll-div menuAdmin">
+        <div class="scroll-a"><a class="title" href="#avl">Grafo películas</a>></div>
+        <div class="scroll-a"><a class="title" href="#simple-list">Grafo clientes</a>></div>
+        <div class="scroll-a"><a class="title" href="#abb">Grafo actores</a>></div>
+        <div class="scroll-a"><a class="title" href="#hashtable">Grafo categorías</a>></div>
+    </div>
+    <scroll-container class="scroll-div menuAdmin">
+        <scroll-page ><div class="grafo-container" id="avl"></div></scroll-page>
+        <scroll-page ><div class="grafo-container" id="simple-list"></div></scroll-page>
+        <scroll-page ><div class="grafo-container" id="abb"></div></scroll-page>
+        <scroll-page ><div class="grafo-container" id="hashtable"></div></scroll-page>
+
+    </scroll-container>
+
+    <!--
+        MENU CLIENTE INICIA
+    -->
+    <nav class="menuCliente" id="nav-cliente">
+        <ul>
+            <li class="link" id="logo2"></li>
+            <li ><a href="#" class="link" id="btn-home">HOME</a></li>
+            <li ><a href="#" class="link" id="btn-movies">PELICULAS</a></li>
+            <li ><a href="#" class="link" id="btn-categorias">CATEGORIAS</a></li>
+            <li ><a href="#" class="link" id="btn-actores">ACTORES</a></li>
+            <li ><a href="#" class="link" id="logoutCliente">LOGOUT</a></li>
+        </ul>
+    </nav>
+    <div class="menuCliente cliente-container capa1 title" id="home-client">HOME</div>
+    <div class="menuCliente cliente-container capa1 title" id="movies-client">PELICULAS</div>
+    <div class="menuCliente cliente-container capa1 title" id="categorias-client">CATEGORIAS</div>
+    <div class="menuCliente cliente-container capa1 title" id="actores-client">ACTORES</div>
 
      
        
@@ -43,6 +110,7 @@
     <script src="https://unpkg.com/@hpcc-js/wasm@0.3.11/dist/index.min.js"></script>
     <script src="https://unpkg.com/d3-graphviz@3.0.5/build/d3-graphviz.js"></script>
     <script src="/src/Js/main.js" type="module"></script>
+    <script src="/src/Js/CargasMasivas.js" type="module"></script>
     
    
     

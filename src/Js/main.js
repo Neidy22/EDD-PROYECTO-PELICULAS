@@ -4,9 +4,7 @@ import Node from "../Objects/Node.js";
 import BinaryTree from "../Structures/BinaryTree.js";
 import HashTable from "../Structures/HashTable.js";
 import AVL from "../Structures/AVL.js";
-//creo mi variable de local storge
-const myStorage=window.localStorage;
-//creo las instancias de las estructuras a utilizar
+
 const clients=new SimpleList();
 export {clients};
 const actors=new BinaryTree();
@@ -17,15 +15,16 @@ const movies=new AVL();
 export {movies};
 
 var user;
-myStorage.setItem("clients",clients);
+
+
 
 /*-------------------------------
     CREACIÓN DEL USER ADMIN
 --------------------------------*/
 const admin=new Client(2354168452525,"WIlfred Perez","EDD","wilfredP@gmail.com","123","+502 (123) 123-4567");
-myStorage.setItem("admin",admin);
 
-window.addEventListener('load',function(){
+
+//window.addEventListener('load',function(){
   /*--------------------------------
         VERIFICAR LOGIN
   --------------------------------*/
@@ -46,9 +45,13 @@ window.addEventListener('load',function(){
     //console.log(isAdmin);
     
     if(isAdmin){
-      if(username=="EDD" && pass=="123"){
+      if(username==admin.user && pass==admin.password){
           alert("Usuario Administrador Verificado")
-          window.location.href="Views/Admin.html"
+          showHide('none',document.getElementsByClassName("menuPrincipal"));
+          showHide('block',document.getElementsByClassName("menuAdmin"));
+          showHide('none',document.getElementsByClassName("menuCliente"));
+
+          //window.location.href="Views/Admin.html"
           //window.open("Views/Admin.html");
           //form.action="Views/Admin.html"
 
@@ -59,7 +62,13 @@ window.addEventListener('load',function(){
     }else{
       user=clients.search(username,pass);
       if(user!=null){
-          alert("Bienvenido "+username)
+        showHide('none',document.getElementsByClassName("menuPrincipal"));
+        showHide('none',document.getElementsByClassName("menuAdmin"));
+        showHide('block',document.getElementsByClassName("menuCliente"));
+        showHideSeccion(document.getElementsByClassName("cliente-container"),'home-client');
+
+        alert("Bienvenido "+username)
+
       }else{
           alert("No se encontró un usuario válido, vuelve a intentarlo!")
       }
@@ -69,6 +78,78 @@ window.addEventListener('load',function(){
 
   }
 
+ 
+  /*-------------------------------------------------------
+    Codigo para  cerrar sesión en admin
+  --------------------------------------------------------*/
+  const btnHome=document.getElementById("logoutAdmin");
+  btnHome.addEventListener("click",(e) => {
+    e.preventDefault()
+    showHide('block',document.getElementsByClassName("menuPrincipal"));
+    showHide('none',document.getElementsByClassName("menuAdmin"));
+    showHide('none',document.getElementsByClassName("menuCliente"));
+    
+  });
+
+   /*-------------------------------------------------------
+    Codigo para  cerrar sesión en cliente
+  --------------------------------------------------------*/
+  const btnLog=document.getElementById("logoutCliente");
+  btnLog.addEventListener("click",(e) => {
+    e.preventDefault()
+    showHide('block',document.getElementsByClassName("menuPrincipal"));
+    showHide('none',document.getElementsByClassName("menuCliente"));
+    showHide('none',document.getElementsByClassName("menuAdmin"));
+    
+  });
+
+
+  /*-------------------------------------------------------
+    Codigo para activar vista home de cliente
+  --------------------------------------------------------*/
+  const btnHomeClient=document.getElementById("btn-home");
+  btnHomeClient.addEventListener("click",(e) => {
+    e.preventDefault()
+    showHideSeccion(document.getElementsByClassName("cliente-container"),'home-client');
+    
+  });
+
+
+   /*-------------------------------------------------------
+    Codigo para activar vista movies de cliente
+  --------------------------------------------------------*/
+  const btnMovies=document.getElementById("btn-movies");
+  btnMovies.addEventListener("click",(e) => {
+    e.preventDefault()
+    showHideSeccion(document.getElementsByClassName("cliente-container"),'movies-client');
+    
+  });
+
+
+  /*-------------------------------------------------------
+    Codigo para activar vista categorias
+  --------------------------------------------------------*/
+  const btnCategorias=document.getElementById("btn-categorias");
+  btnCategorias.addEventListener("click",(e) => {
+    e.preventDefault()
+    showHideSeccion(document.getElementsByClassName("cliente-container"),'categorias-client');
+    
+  });
+
+  /*-------------------------------------------------------
+    Codigo para activar vista actores
+  --------------------------------------------------------*/
+  const btnActores=document.getElementById("btn-actores");
+  btnActores.addEventListener("click",(e) => {
+    e.preventDefault()
+    showHideSeccion(document.getElementsByClassName("cliente-container"),'actores-client');
+    
+  });
+
+
+
+  
+
   
 
 
@@ -76,11 +157,30 @@ window.addEventListener('load',function(){
 
 
 
+//});
 
 
 
-});
+  
+    //función para mostrar u ocultar los elementos de una clase
+    function showHide(estado,elementos){
+      var i;
+      for(i=0; i<elementos.length; i++){
+        elementos[i].style.display=estado;
+      }
 
+    }
 
-export default {myStorage};
-
+    //funcion para activar una seccion especifica de un menu 
+    function showHideSeccion(clase,id){
+      var i;
+      for(i=0; i<clase.length; i++){
+        //console.log(clase[i].getAttribute('id'));
+        //console.log(id);
+        if(clase[i].getAttribute('id')==id){
+          clase[i].style.display='block';
+        }else{
+          clase[i].style.display='none';
+        }
+      }
+    }

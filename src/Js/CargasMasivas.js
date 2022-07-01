@@ -3,11 +3,14 @@ import Client from "../Objects/Client.js";
 import Actor from "../Objects/Actor.js";
 import Category from "../Objects/Category.js";
 import Movie from "..//Objects/Movie.js";
-import {clients,actors,categorys,movies} from "./main.js";
+import {clients,movies,actors,categorys} from "./main.js";
 
+//const clients=myStorage.getItem("clients");
+//const actors=myStorage.getItem("actors");
+//const categorys=myStorage.getItem("categorys");
+//const movies=myStorage.getItem("movies");
 
-
-window.addEventListener('load',function(){
+//window.addEventListener('load',function(){
     
     
     /*--------------------------------
@@ -29,6 +32,8 @@ window.addEventListener('load',function(){
         }
   
         fileAut.readAsText(this.files[0]);
+       
+
   
   
     });
@@ -71,6 +76,8 @@ window.addEventListener('load',function(){
         }
   
         fileAut.readAsText(this.files[0]);
+       
+
   
   
     });
@@ -107,6 +114,7 @@ window.addEventListener('load',function(){
         }
   
         fileAut.readAsText(this.files[0]);
+        
   
   
     });
@@ -143,6 +151,8 @@ window.addEventListener('load',function(){
         }
   
         fileAut.readAsText(this.files[0]);
+       
+
   
   
     });
@@ -165,7 +175,7 @@ window.addEventListener('load',function(){
     }
 
 
-});
+//});
 
 
 
