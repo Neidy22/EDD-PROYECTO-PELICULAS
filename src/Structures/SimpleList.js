@@ -94,19 +94,19 @@ class SimpleList{
         var aux=this.first
         while(aux.next!=null){
             relas+="    node"+aux.id+" -> node"+aux.next.id+";\n"
-            labels+="    node"+aux.id+" [label=\""+aux.value.dpi+"\"];\n"
+            labels+="    node"+aux.id+" [label=\""+aux.value.name+"\"];\n"
             aux=aux.next
         }
-        labels+="    node"+aux.id+" [label=\""+aux.value.dpi+"\"];\n"
+        labels+="    node"+aux.id+" [label=\""+aux.value.name+"\"];\n"
         
         doteCode+=relas
         doteCode+=labels
 
         doteCode+="    }\n"
         console.log(doteCode)
-        d3.select('#lienzo').graphviz()
-            .width(1600)
-            .height(600)
+        d3.select('#simple-list').graphviz()
+            .width(600)
+            .height(300)
             .renderDot(doteCode);
 
 

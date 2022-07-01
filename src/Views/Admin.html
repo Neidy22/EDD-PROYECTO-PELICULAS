@@ -20,35 +20,46 @@
     <div class="capa1"> 
         <div class="capa2 masivas-container file-select" id="cmClientes">
             Carga Masiva Clientes
-            <input type="file"  name="cmClientes">
+            <input type="file"  id="cmClients">
             <br>
         </div>
         <div class="capa2 masivas-container file-select" id="cmPeliculas">
             Carga Masiva Películas
-            <input type="file"  name="cmPeliculas">
+            <input type="file"  id="cmMovies">
             <br>
         </div>
         <div class="capa2 masivas-container file-select" id="cmActores">
             Carga Masiva Actores
-            <input type="file"  name="cmActores">
+            <input type="file"  id="cmActors">
             <br>
         </div>
         <div class="capa2 masivas-container file-select" id="cmCategorias">
             Carga Masiva Categorías
-            <input type="file" name="cmCategorias">
+            <input type="file" id="cmCategory">
             <br>
         </div>
     </div><br>
         
 
-    <div class="capa1">
-        <div id="lienzo"></div>
+    <div class="scroll-div">
+        <div class="scroll-a"><a class="title" href="#avl">Grafo películas</a>></div>
+        <div class="scroll-a"><a class="title" href="#simple-list">Grafo clientes</a>></div>
+        <div class="scroll-a"><a class="title" href="#abb">Grafo actores</a>></div>
+        <div class="scroll-a"><a class="title" href="#hashtable">Grafo categorías</a>></div>
     </div>
+    <scroll-container class="scroll-div">
+        <scroll-page ><div class="grafo-container" id="avl"></div></scroll-page>
+        <scroll-page ><div class="grafo-container" id="simple-list"></div></scroll-page>
+        <scroll-page ><div class="grafo-container" id="abb"></div></scroll-page>
+        <scroll-page ><div class="grafo-container" id="hashtable"></div></scroll-page>
+
+    </scroll-container>
 
 
     <script src="//d3js.org/d3.v5.min.js"></script>
     <script src="https://unpkg.com/@hpcc-js/wasm@0.3.11/dist/index.min.js"></script>
     <script src="https://unpkg.com/d3-graphviz@3.0.5/build/d3-graphviz.js"></script>
+    <script src="../Js/CargasMasivas.js" type="module"></script>
     
 </body>
 </html>

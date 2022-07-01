@@ -1,10 +1,21 @@
 import SimpleList from "../Structures/SimpleList.js";
 import Client from "../Objects/Client.js";
 import Node from "../Objects/Node.js";
+import BinaryTree from "../Structures/BinaryTree.js";
+import HashTable from "../Structures/HashTable.js";
+import AVL from "../Structures/AVL.js";
 //creo mi variable de local storge
 const myStorage=window.localStorage;
 //creo las instancias de las estructuras a utilizar
 const clients=new SimpleList();
+export {clients};
+const actors=new BinaryTree();
+export {actors};
+const categorys=new HashTable(20);
+export {categorys};
+const movies=new AVL();
+export {movies};
+
 var user;
 myStorage.setItem("clients",clients);
 
@@ -38,6 +49,7 @@ window.addEventListener('load',function(){
       if(username=="EDD" && pass=="123"){
           alert("Usuario Administrador Verificado")
           window.location.href="Views/Admin.html"
+          //window.open("Views/Admin.html");
           //form.action="Views/Admin.html"
 
       }else{
@@ -57,25 +69,18 @@ window.addEventListener('load',function(){
 
   }
 
+  
+
+
+
+
+
+
+
+
+
 });
 
 
+export default {myStorage};
 
-
-
-
-
-
-  
-
-
-  
-
-
-  
-
-
-
-
-
-export default myStorage;

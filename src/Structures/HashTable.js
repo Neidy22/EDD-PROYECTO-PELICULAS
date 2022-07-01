@@ -12,8 +12,8 @@ class HashTable{
 
     init(){
         //creo el vector
-        var n=30;
-        while(n>0){
+        var n=this.size-1;
+        while(n>=0){
             var data=new SimpleList();
             this.vector.addNewDown(data,n);
             n--
@@ -23,7 +23,7 @@ class HashTable{
     insertValue(data){
         //calculo el modulo
         var dataKey=data.id % this.size;
-        
+        console.log("Llave "+dataKey+" Para"+data.id);
         //calculo y verifico el porcentaje de ocupación 
         this.ocupation=this.ocupation+(1/this.size);
        
@@ -100,82 +100,16 @@ class HashTable{
         text+=colisiones;
         text+="}\n"
         
-        console.log(text)
+        //console.log(text)
 
-        d3.select('#lienzo').graphviz()
+        d3.select('#hashtable').graphviz()
             .width(600)
-            .height(600)
+            .height(300)
             .renderDot(text);
     }
 
     
     
 }
+export default HashTable;
 
-
-var tabla=new HashTable(30);
-
-var a=new Category(15,"a");
-var b=new Category(35,"a");
-var c=new Category(68,"a");
-var d=new Category(54,"a");
-var e=new Category(21,"a");
-var f=new Category(85,"a");
-var g=new Category(35,"a");
-var h=new Category(36,"a");
-var i=new Category(32,"a");
-var j=new Category(10,"a");
-var k=new Category(25,"a");
-var l=new Category(35,"a");
-var m=new Category(68,"a");
-var n=new Category(68,"a");
-var o=new Category(9,"a");
-var p=new Category(54,"a");
-var q=new Category(87,"a");
-
-tabla.insertValue(a);
-tabla.insertValue(b);
-tabla.insertValue(c);
-tabla.insertValue(d);
-tabla.insertValue(e);
-tabla.insertValue(f);
-tabla.insertValue(g);
-tabla.insertValue(h);
-tabla.insertValue(i);
-tabla.insertValue(j);
-tabla.insertValue(k);
-tabla.insertValue(l);
-tabla.insertValue(m);
-tabla.insertValue(n);
-tabla.insertValue(o);
-tabla.insertValue(p);
-tabla.insertValue(q);
-
-
-tabla.graph();
-/*
-var tabla=new HashTable(10);
-var a=new Category(5,"a");
-var b=new Category(10,"a");
-var c=new Category(15,"a");
-var d=new Category(20,"a");
-var e=new Category(25,"a");
-var f=new Category(30,"a");
-var g=new Category(35,"a");
-var h=new Category(40,"a");
-var i=new Category(45,"a");
-var j=new Category(50,"a");
-
-
-tabla.insertValue(a);
-tabla.insertValue(b);
-tabla.insertValue(c);
-tabla.insertValue(d);
-tabla.insertValue(e);
-tabla.insertValue(f);
-tabla.insertValue(g);
-tabla.insertValue(h);
-tabla.insertValue(i);
-tabla.insertValue(j);
-
-*/
