@@ -1,3 +1,5 @@
+import SimpleList from "../Structures/SimpleList.js";
+
 class Movie{
     constructor(_id,_name,_descripcion,_puntuacion,_precio){
         this.id=_id;
@@ -5,6 +7,7 @@ class Movie{
         this.descripcion=_descripcion;
         this.puntuacion=_puntuacion;
         this.precio=_precio;
+        this.comments=new SimpleList();
 
     }
 }

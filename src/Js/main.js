@@ -139,10 +139,39 @@ const admin=new Client(2354168452525,"WIlfred Perez","EDD","wilfredP@gmail.com",
   /*-------------------------------------------------------
     Codigo para activar vista actores
   --------------------------------------------------------*/
+  
   const btnActores=document.getElementById("btn-actores");
   btnActores.addEventListener("click",(e) => {
     e.preventDefault()
     showHideSeccion(document.getElementsByClassName("cliente-container"),'actores-client');
+
+    
+    
+    //recorrido in orden
+    var inorder=document.getElementById("inorder");
+    inorder.addEventListener("click",(e)=>{
+      //si el contenedor de actores está lleno, lo vacío
+      deleteContainerElements(document.getElementById('general-actors'));
+      actors.showInorder();
+    });
+
+    //recorrido pre orden
+    var preorder=document.getElementById("preorder");
+    preorder.addEventListener("click",(e)=>{
+      //si el contenedor de actores está lleno, lo vacío
+      deleteContainerElements(document.getElementById('general-actors'));
+      actors.showPreorder();
+    });
+
+    //recorrido post orden
+    var postorder=document.getElementById("postorder");
+    postorder.addEventListener("click",(e)=>{
+      //si el contenedor de actores está lleno, lo vacío
+      deleteContainerElements(document.getElementById('general-actors'));
+      actors.showPostorder();
+    });
+
+    
     
   });
 
@@ -184,3 +213,14 @@ const admin=new Client(2354168452525,"WIlfred Perez","EDD","wilfredP@gmail.com",
         }
       }
     }
+
+    //función para eliminar todo los elementos del contenedor de actores
+
+    function deleteContainerElements(container){
+  
+     while(container.firstChild){
+      container.removeChild(container.firstChild);
+     }
+    }
+
+    

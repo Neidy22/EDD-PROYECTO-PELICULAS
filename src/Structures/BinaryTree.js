@@ -97,96 +97,90 @@ class BinaryTree{
     }
 
 
-    search(nombre){
-        const divA=document.getElementById("autorBio");
-        this.searchPRE(this,nombre,divA);
+    showInorder(){
+        
+        this.Inorder(this,0);
     }
 
-    searchPRE(actual,nombre,cont){
+    Inorder(actual,n){
         if(actual.root!=null){
-            if(nombre===actual.root.value.name){
-                const aut=actual.root.value;
-                console.log(actual.root.value.name)
-                alert("Autor encontrado")
-                
-                const nom=document.createElement("h2");
-                nom.textContent=aut.name;
-                cont.insertAdjacentElement("beforeend",nom)
-                const dpi=document.createElement("h3");
-                dpi.textContent=aut.dpi;
-                cont.insertAdjacentElement("beforeend",dpi)
-                const email=document.createElement("h3");
-                email.textContent=aut.email;
-                cont.insertAdjacentElement("beforeend",email)
-                const tel=document.createElement("h3");
-                tel.textContent=aut.telephone;
-                cont.insertAdjacentElement("beforeend",tel)
-                const direc=document.createElement("h3");
-                direc.textContent=aut.adress;
-                cont.insertAdjacentElement("beforeend",direc)
-                const bio=document.createElement("p");
-                bio.textContent=aut.bio;
-                cont.insertAdjacentElement("beforeend",bio)
-                 
-            }
-            this.searchPRE(actual.left_son,nombre,cont);
-            this.searchPRE(actual.right_son,nombre,cont);
+            n++;
+            this.Inorder(actual.left_son,n);
+            this.createActorCont(actual.root.value,n);
+           
+            this.Inorder(actual.right_son,n);
         }
+
+    }
+
+    
+    showPreorder(){
        
+        this.Preorder(this,0);
     }
 
-    recorrer(){
-        const container=document.getElementById("autors-container")
-        this.recorrerPreorder(this,container)
-    }
-
-    recorrerPreorder(actual,cont){
+    Preorder(actual,n){
         if(actual.root!=null){
-            
-            const div=document.createElement("div");
-            div.classList="autor-view";
-            div.textContent=actual.root.value.name;
-            cont.insertAdjacentElement("beforeend",div);
-            const logo=document.createElement("span");
-            logo.classList="material-icons";
-            logo.textContent="&#xea67;";
-            this.recorrerPreorder(actual.left_son,cont)
-            this.recorrerPreorder(actual.right_son,cont)
+            n++;
+            this.createActorCont(actual.root.value,n);
+          
+            this.Preorder(actual.left_son,n);
+            this.Preorder(actual.right_son,n);
+ 
         }
 
     }
 
 
-
-    //PARA EL EXAMEN
-    recorrerEn(){
-        this.enorden(this);
+    showPostorder(){
+    
+        this.Postorder(this,0);
     }
 
-    enorden(actual){
+    Postorder(actual,n){
         if(actual.root!=null){
-            this.enorden(actual.left_son);
-            console.log(actual.root.id);
-            this.enorden(actual.right_son);
-        }
-    }
-
-
-    colmajor(){
-        var vector=[0,1,2,3,4,5,6,7,8]
-        var dim=3;
-        var i;
-        var j;
-        for(i=0,j=0; i<dim, j<dim; i++, j++){
+            n++;
             
-            var pos=i*dim*j;
-            console.log(vector[pos]);
+            this.Postorder(actual.left_son,n);
+            this.Postorder(actual.right_son,n); 
+            this.createActorCont(actual.root.value,n); 
             
         }
+
     }
 
+    createActorCont(actor,n){
+        const general=document.getElementById("general-actors");
 
-    //PARA EL EXAMEN
+        const contenedor=document.createElement("div");
+        contenedor.id="actor"+n;
+        contenedor.classList="bloque-actor";
+  
+        const nombre=document.createElement("h1");
+        nombre.classList="subtitle";
+        nombre.textContent=actor.name;
+        
+        const dni=document.createElement("h2");
+        dni.classList="subtitle2";
+        dni.textContent="Dni: "+actor.dni;
+
+        const desc=document.createElement("b");
+        desc.textContent="Descripción";
+  
+        const descripcion=document.createElement("p");
+        descripcion.classList="text";
+
+        descripcion.appendChild(desc);
+        descripcion.textContent=actor.description;
+  
+        contenedor.appendChild(nombre);
+        contenedor.appendChild(dni);
+        contenedor.appendChild(descripcion);
+
+        general.appendChild(contenedor);
+  
+    }
+    
 
 
 
@@ -202,7 +196,7 @@ class BinaryTree{
         text+=n[1];
         
         text+="}";
-        console.log(text)
+        //console.log(text)
        
         d3.select('#abb').graphviz()
             .width(600)

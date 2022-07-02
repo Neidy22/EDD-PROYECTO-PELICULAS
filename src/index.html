@@ -86,19 +86,31 @@
         MENU CLIENTE INICIA
     -->
     <nav class="menuCliente" id="nav-cliente">
-        <ul>
+        <ul class="nav">
             <li class="link" id="logo2"></li>
             <li ><a href="#" class="link" id="btn-home">HOME</a></li>
             <li ><a href="#" class="link" id="btn-movies">PELICULAS</a></li>
             <li ><a href="#" class="link" id="btn-categorias">CATEGORIAS</a></li>
-            <li ><a href="#" class="link" id="btn-actores">ACTORES</a></li>
+            <li ><a href="#" class="link" id="btn-actores">ACTORES</a>
+                <ul>
+                    <li><a href="#" class="sub-actor" id="inorder">In orden</a></li>
+                    <li><a href="#" class="sub-actor" id="preorder">Pre orden</a></li>
+                    <li><a href="#" class="sub-actor" id="postorder">Post orden</a></li>
+                </ul> 
+            </li>
             <li ><a href="#" class="link" id="logoutCliente">LOGOUT</a></li>
         </ul>
     </nav>
     <div class="menuCliente cliente-container capa1 title" id="home-client">HOME</div>
     <div class="menuCliente cliente-container capa1 title" id="movies-client">PELICULAS</div>
     <div class="menuCliente cliente-container capa1 title" id="categorias-client">CATEGORIAS</div>
-    <div class="menuCliente cliente-container capa1 title" id="actores-client">ACTORES</div>
+    <section class="menuCliente cliente-container capa1" id="actores-client">
+        <h1 class="title">ACTORES</h1>
+        <div class="actores-container" id="general-actors">
+
+        </div>
+
+    </section>
 
      
        
