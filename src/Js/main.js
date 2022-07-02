@@ -5,7 +5,6 @@ import BinaryTree from "../Structures/BinaryTree.js";
 import HashTable from "../Structures/HashTable.js";
 import AVL from "../Structures/AVL.js";
 
-const clients=new SimpleList();
 
 const actors=new BinaryTree();
 //export {actors};
@@ -15,6 +14,8 @@ const movies=new AVL();
 //export {movies};
 const listaMovies=new SimpleList();
 //export {listaMovies};
+
+const clients=new SimpleList();
 
 var user;
 
@@ -64,12 +65,16 @@ const admin=new Client(2354168452525,"WIlfred Perez","EDD","wilfredP@gmail.com",
     }else{
       user=clients.search(username,pass);
       if(user!=null){
+        
         showHide('none',document.getElementsByClassName("menuPrincipal"));
         showHide('none',document.getElementsByClassName("menuAdmin"));
         showHide('block',document.getElementsByClassName("menuCliente"));
         showHideSeccion(document.getElementsByClassName("cliente-container"),'home-client');
+        btnHomeClient.click();
 
         alert("Bienvenido "+username)
+        
+        listaMovies.who=user.value.name;
 
       }else{
           alert("No se encontró un usuario válido, vuelve a intentarlo!")
@@ -102,7 +107,7 @@ const admin=new Client(2354168452525,"WIlfred Perez","EDD","wilfredP@gmail.com",
     showHide('block',document.getElementsByClassName("menuPrincipal"));
     showHide('none',document.getElementsByClassName("menuCliente"));
     showHide('none',document.getElementsByClassName("menuAdmin"));
-    
+    listaMovies.who=null;
   });
 
 
@@ -110,6 +115,7 @@ const admin=new Client(2354168452525,"WIlfred Perez","EDD","wilfredP@gmail.com",
     Codigo para activar vista home de cliente
   --------------------------------------------------------*/
   const btnHomeClient=document.getElementById("btn-home");
+  
   btnHomeClient.addEventListener("click",(e) => {
     e.preventDefault()
     showHideSeccion(document.getElementsByClassName("cliente-container"),'home-client');
@@ -243,4 +249,5 @@ const admin=new Client(2354168452525,"WIlfred Perez","EDD","wilfredP@gmail.com",
     }
 
     
-export {clients,actors,categorys,movies,listaMovies,deleteContainerElements,showHideSeccion,showHide}
+export {clients,actors,categorys,movies,listaMovies};
+

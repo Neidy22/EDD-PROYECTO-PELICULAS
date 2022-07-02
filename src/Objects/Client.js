@@ -6,7 +6,7 @@ class Client{
         this.email=_email
         this.password=_password
         this.telephone=_telephone
-
+      
     }
 }
 

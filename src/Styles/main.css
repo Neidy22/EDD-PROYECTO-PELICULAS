@@ -396,7 +396,7 @@ scroll-page {
 }
 
 
-.info-container , .alquiler-container{
+.info-container , .alquiler-container,.edit-container{
     float: left;
     margin-left: 5%;
     width: 10%;
@@ -419,3 +419,84 @@ scroll-page {
 
 
 
+.edit-container{
+    float:left;
+}
+
+
+.scroll-coments{
+    float:left;
+    width:90%;
+    margin-left:5%;
+    margin-top:50px;
+    height: 400px;
+    background-color: var(--fosfo-fondo1-transparent);
+
+
+}
+
+.comentarios{
+    background-color:var(--transparent-container-capa2);
+    width: 100%;
+    margin-top: 10px;
+    align-items: center;
+
+    color:var(--text-color);
+    text-align: justify;
+    font-size:small;
+
+
+}
+
+.edit-pelicula{
+    width: 50%;
+    padding: 20px;
+    
+    float: left;
+    background-color:var(--dark-container-capa1);
+}
+
+.alquilar-pelicula{
+    width: 50%;
+    padding: 20px;
+    align-items: center;
+    float: left;
+    background-color: var(--dark-container-capa0);
+}
+.alquilar-pelicula >button{
+    width: 80px;
+    height: 80px;
+    text-align: end;
+    float: left;
+    background-image: url("../Styles/img/carrito.gif");
+    background-size: cover;
+}
+
+#specific-movie-info{
+    float: left;
+    padding:10px;
+    background-color: var(--fosfo-fondo1-transparent);
+    
+}
+
+#movies-client{
+    background-color: var(--dark-container-capa1);
+}
+
+.title-comentarios{
+    background-color:var(--light-container-color);
+    float: left;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.title-comentarios > button{
+    width: 25%;
+    text-align: center;
+    margin-right: 15%;
+    align-content: center;
+}
+
+.labels{
+    width:90%;
+}

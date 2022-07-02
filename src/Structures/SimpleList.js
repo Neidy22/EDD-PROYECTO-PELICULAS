@@ -1,13 +1,24 @@
 import Node from "../Objects/Node.js";
 //import {deleteContainerElements,showHideSeccion} from "../Js/main.js";
+import Comment from "../Objects/Comment.js";
 
-function viewMovie(pelicula){
-    //var pelicula=movies.search(id);
-    //console.log("ya busque"+id)
 
+function viewMovie(pelicula,who){
+    
     const general = document.getElementById("specific-movie-info");
     deleteContainerElements(general);
+    datamovie(pelicula,general);
+    editDataMovie(pelicula,general);
+    alquilarCont(pelicula,general);
+    comments(pelicula,general,who);
+    
+    showHideSeccion(document.getElementsByClassName("cliente-container"),'movies-client');
 
+
+};
+
+function datamovie(pelicula,general){
+    
     //creo el div con la información
     const peli = document.createElement("div");
     peli.id="info-pelicula";
@@ -27,18 +38,158 @@ function viewMovie(pelicula){
     peli.appendChild(titulo);
     peli.appendChild(desc);
     peli.appendChild(contenidoD);
-
-      //creo el div para editar la información
-
-
-      //creo el div para los comentarios
-
     general.appendChild(peli);
-      //muestro la sección con los datos encontrados
-    showHideSeccion(document.getElementsByClassName("cliente-container"),'movies-client');
+    
+
+}
+
+function editDataMovie(pelicula,general){
+    const editCont = document.createElement("div");
+    editCont.classList="edit-pelicula";
+    /*
+    const nuevaVal = document.createElement("label");
+    nuevaVal.for="edit"+pelicula.id;*/
+
+    const nueva = document.createElement("input");
+    nueva.type="text";
+    nueva.id="edit"+pelicula.id;
+
+    const star= document.createElement("h1");
+    star.classList="subtitle2";
+    star.textContent="Puntuación: "+pelicula.puntuacion+"/ 5";
+
+    //contenedor para los botones de información
+  
+    //boton para ver la información de una película
+    const btnEdit=document.createElement("button");
+    //btnEdit.href="#";
+    btnEdit.textContent="Cambiar Puntuación";
+    btnEdit.onclick=function(){
+      
+        
+        if(nueva.value>=0 && nueva.value<=5){
+            editCont.removeChild(star);
+            pelicula.puntuacion=nueva.value;
+            star.textContent="Puntuación: "+pelicula.puntuacion+" / 5";
+            editCont.appendChild(star);
+            
+
+        }else{
+            alert("Valor fuera de rango");
+        }
+        
+
+    };
+    
+    editCont.appendChild(btnEdit);
+    //editCont.appendChild(nuevaVal);
+    editCont.appendChild(nueva);
+    editCont.appendChild(star);
+
+    
+
+    general.appendChild(editCont);
+    
 
 
-};
+}
+
+function alquilarCont(pelicula,general){
+    const alquilarCont = document.createElement("div");
+    alquilarCont.classList="alquilar-pelicula";
+
+    //boton para alquilar una
+    const btnAlq=document.createElement("button");
+    btnAlq.textContent="Alquilar";
+    
+    const price = document.createElement("h1");
+    price.classList="subtitle";
+    price.textContent="Precio: Q."+pelicula.precio;
+
+
+    alquilarCont.appendChild(btnAlq);
+    alquilarCont.appendChild(price);
+
+    general.appendChild(alquilarCont);
+
+
+
+
+}
+
+function comments(pelicula,general,who){
+
+
+    const contenedorComments = document.createElement("scroll-container");
+    contenedorComments.classList = "scroll-coments";
+    
+    const tituloinde = document.createElement("div");
+    tituloinde.classList = "title-comentarios title";
+    tituloinde.textContent="Comentarios";
+
+
+    var primerComent=pelicula.comments.first;
+    scrollComents(primerComent,contenedorComments);
+
+    var textoComent = document.createElement("input");
+    textoComent.type="text";
+    textoComent.classList="labels";
+    
+    tituloinde.appendChild(textoComent);
+     //boton para ver enviar el comentario
+     const btnComent=document.createElement("button");
+     btnComent.textContent="Publicar";
+
+     tituloinde.appendChild(btnComent);
+
+     btnComent.onclick = function (){
+       
+        
+        if(textoComent.value!=null){
+            console.log("Usuario "+who+" coment "+textoComent.value);
+            var nuevo = new Comment(who,textoComent.value);
+            pelicula.comments.addNew(nuevo);
+
+            deleteContainerElements(contenedorComments);
+            scrollComents(pelicula.comments.first,contenedorComments);
+        }
+
+     };  
+
+    general.appendChild(tituloinde);
+    //general.appendChild(textoComent);
+    //general.appendChild(btnComent);
+    general.appendChild(contenedorComments);
+
+
+    
+
+
+}
+
+function scrollComents(aux,contenedoComments){
+    
+    var n=0;
+    while(aux!=null){
+        console.log(aux.value);
+        var comment = document.createElement("scroll-page");
+
+        var commentCon = document.createElement("div");
+        commentCon.classList="comentarios text";
+        commentCon.id=n;
+        commentCon.textContent = aux.value.person+": "+aux.value.message;
+
+        comment.appendChild(commentCon);
+        contenedoComments.appendChild(comment);
+
+        aux=aux.next;
+        n++;
+    }
+            
+
+    
+
+}
 
 function deleteContainerElements(container){
     while(container.firstChild){
@@ -65,6 +216,7 @@ class SimpleList{
     constructor(){
         this.first=null
         this.size=0
+        this.who=null;
    
 
     }
@@ -176,15 +328,16 @@ class SimpleList{
 
 
     ordenamientoAs(){
-       
+        
         var aux=this.first;
         while(aux!=null){
-            this.createPeliculasCont(aux.value,aux.id);
+            this.createPeliculasCont(aux.value,aux.id,this.who);
             aux=aux.next;
         }
     }
 
     ordenamientoDes(){
+
         var n=this.size-1;
         var aux,j;
    
@@ -193,7 +346,7 @@ class SimpleList{
             j=0;
             while(aux!=null){
                 if(j==n){
-                    this.createPeliculasCont(aux.value,aux.id);
+                    this.createPeliculasCont(aux.value,aux.id,this.who);
                     break;
                 }
                 aux=aux.next;
@@ -208,7 +361,7 @@ class SimpleList{
    
 
     
-    createPeliculasCont(pelicula,n){
+    createPeliculasCont(pelicula,n,who){
         const general=document.getElementById("general-movies");
         //contenedor para cada pelicula
         const contenedor=document.createElement("div");
@@ -233,41 +386,8 @@ class SimpleList{
         const btnInfo=document.createElement("a");
         btnInfo.href="#";
         btnInfo.onclick=function(){
-            viewMovie(pelicula);
+            viewMovie(pelicula,who);
 
-            /*
-            const general = document.getElementById("specific-movie-info");
-            deleteContainerElements(general);
-    
-            //creo el div con la información
-            const peli = document.createElement("div");
-            peli.id="info-pelicula";
-    
-            const titulo = document.createElement("h1");
-            titulo.classList="title";
-            titulo.textContent = pelicula.name;
-    
-            const desc = document.createElement("h2");
-            desc.classList="subtitle";
-            desc.textContent="Descripción:"
-    
-            const contenidoD = document.createElement("p");
-            contenidoD.classList="text";
-            contenidoD.textContent=pelicula.description;
-    
-            peli.appendChild(titulo);
-            peli.appendChild(desc);
-            peli.appendChild(contenidoD);
-    
-            //creo el div para editar la información
-    
-    
-            //creo el div para los comentarios
-    
-            general.appendChild(peli);
-            //muestro la sección con los datos encontrados
-            showHideSeccion(document.getElementsByClassName("cliente-container"),'movies-client');
-            */
         };
         //span para el icono del INFO
         const icono1=document.createElement("span");
