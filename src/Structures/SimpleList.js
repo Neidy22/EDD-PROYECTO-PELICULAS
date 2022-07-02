@@ -6,6 +6,7 @@ class SimpleList{
     constructor(){
         this.first=null
         this.size=0
+   
 
     }
 
@@ -44,7 +45,7 @@ class SimpleList{
 
     addNewOrdered(data){
         var nuevo=new Node(data)
-        nuevo.id=data.quantity
+        nuevo.id=data.id
         if(this.first==null){
             this.first=nuevo
         }else if (nuevo.id<this.first.id){
@@ -65,6 +66,7 @@ class SimpleList{
             prev.next=nuevo
         }
         this.size++
+        //console.log("pelicula insertada en lista");
     }
 
 
@@ -103,7 +105,7 @@ class SimpleList{
         doteCode+=labels
 
         doteCode+="    }\n"
-        console.log(doteCode)
+        //console.log(doteCode)
         d3.select('#simple-list').graphviz()
             .width(600)
             .height(300)
@@ -113,10 +115,108 @@ class SimpleList{
     }
 
 
-    
+
+    ordenamientoAs(){
+       
+        var aux=this.first;
+        while(aux!=null){
+            this.createPeliculasCont(aux.value,aux.id);
+            aux=aux.next;
+        }
+    }
+
+    ordenamientoDes(){
+        var n=this.size-1;
+        var aux,j;
+   
+        while(n>=0){
+            aux=this.first;
+            j=0;
+            while(aux!=null){
+                if(j==n){
+                    this.createPeliculasCont(aux.value,aux.id);
+                    break;
+                }
+                aux=aux.next;
+                j++;
+            }
+            
+            n--;
+        }
+        
+    }
+
+   
 
     
+    createPeliculasCont(pelicula,n){
+        const general=document.getElementById("general-movies");
+        //contenedor para cada pelicula
+        const contenedor=document.createElement("div");
+        contenedor.id="pelicula"+n;
+        contenedor.classList="bloque-pelicula";
+        
+        //contenedor para los títulos de  películas
+        const titulo=document.createElement("div");
+        titulo.classList="titulos-container subtitle2";
+        titulo.textContent=pelicula.name+" Id: "+pelicula.id;
 
+        //contenedor para las descripciones
+        const descripcion=document.createElement("div");
+        descripcion.classList="descripcion-container text";
+        descripcion.textContent=pelicula.description;
+        
+
+        //contenedor para los botones de información
+        const info=document.createElement("div");
+        info.classList="info-container";
+        //boton para ver la información de una película
+        const btnInfo=document.createElement("a");
+        btnInfo.href="#";
+        //span para el icono del INFO
+        const icono1=document.createElement("span");
+        icono1.classList="material-icons";
+        icono1.textContent="INFO";
+ 
+        btnInfo.appendChild(icono1);
+        info.appendChild(btnInfo);
+
+
+        //contenedor para los botones  de alquiler
+        const alquilar=document.createElement("div");
+        alquilar.classList="alquiler-container";
+        //boton alquilar con una etiqueta a
+        const btnAlqui=document.createElement("a");
+        btnAlqui.href="#";
+        
+        //span para el icono del carrito
+        const icono2=document.createElement("span");
+        icono2.classList="material-icons subtitle";
+        icono2.textContent="ALQUILAR";
+        
+
+        
+
+        btnAlqui.appendChild(icono2);
+        alquilar.appendChild(btnAlqui);
+
+
+
+        const precio=document.createElement("div");
+        precio.classList="precio-container subtitle2";
+        precio.textContent="Q."+pelicula.precio;
+        
+
+
+        contenedor.appendChild(titulo);
+        contenedor.appendChild(descripcion);
+        contenedor.appendChild(info);
+        contenedor.appendChild(alquilar);
+        contenedor.appendChild(precio);
+
+        general.appendChild(contenedor);
+  
+    }
 
    
 

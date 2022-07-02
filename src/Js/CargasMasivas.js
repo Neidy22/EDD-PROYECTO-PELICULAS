@@ -3,7 +3,7 @@ import Client from "../Objects/Client.js";
 import Actor from "../Objects/Actor.js";
 import Category from "../Objects/Category.js";
 import Movie from "..//Objects/Movie.js";
-import {clients,movies,actors,categorys} from "./main.js";
+import {clients,movies,actors,categorys,listaMovies} from "./main.js";
 
 //const clients=myStorage.getItem("clients");
 //const actors=myStorage.getItem("actors");
@@ -45,14 +45,14 @@ import {clients,movies,actors,categorys} from "./main.js";
             //constructor(_id,_name,_descripcion,_puntuacion,_precio)
             aux=new Movie(data[i].id_pelicula,data[i].nombre_pelicula,data[i].descripcion,data[i].puntuacion_star,data[i].precio_Q);
             movies.insertN(aux);
+            //listaMovies.addNewOrdered(aux);
             //console.log("insertado"+aux.dpi)
             
                 
         }
        
         movies.graph();
-  
-  
+        movies.createList(listaMovies);
     }
 
 

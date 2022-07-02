@@ -13,6 +13,8 @@ const categorys=new HashTable(20);
 export {categorys};
 const movies=new AVL();
 export {movies};
+const listaMovies=new SimpleList();
+export {listaMovies};
 
 var user;
 
@@ -111,8 +113,24 @@ const admin=new Client(2354168452525,"WIlfred Perez","EDD","wilfredP@gmail.com",
   btnHomeClient.addEventListener("click",(e) => {
     e.preventDefault()
     showHideSeccion(document.getElementsByClassName("cliente-container"),'home-client');
-    
+    deleteContainerElements(document.getElementById('general-movies'));
   });
+
+  //codigo para elegir el ordenamiento de la lista de películas
+  var orden=document.getElementById("ordenamiento");
+  orden.onclick = function (e){
+    e.preventDefault();
+    
+    if(orden.value==1){
+      //console.log("el ordenamiento seleccionado es ascendente")
+      deleteContainerElements(document.getElementById('general-movies'));
+      listaMovies.ordenamientoAs();
+    }else if(orden.value==2){
+      //console.log("el ordenamiento seleccionado es descendente")
+      deleteContainerElements(document.getElementById('general-movies'));
+      listaMovies.ordenamientoDes();
+    }
+  }
 
 
    /*-------------------------------------------------------
@@ -175,7 +193,7 @@ const admin=new Client(2354168452525,"WIlfred Perez","EDD","wilfredP@gmail.com",
 
 
 
-  
+
 
   
 

@@ -1,5 +1,6 @@
 import Node from "../Objects/Node.js";
 import Movie from "../Objects/Movie.js";
+import { listaMovies } from "../Js/main.js";
 class AVL{
     constructor(){
         this.root=null;
@@ -68,7 +69,7 @@ class AVL{
     addNew(temp,nuevo){
         
         //casos que pueden ocurrir en la inserción de un nuevo nodo
-        console.log(temp);
+        //console.log(temp);
         //si el nodo actual es nulo
         if(temp.root==null){
             this.case1(temp,nuevo);
@@ -103,17 +104,19 @@ class AVL{
 
 
     case1(actual,nuevo){
-        console.log("caso 1");
+        //console.log("caso 1");
         //el nodo actual es nuevo
         actual.root=nuevo
         actual.left_son=new AVL()
         actual.right_son=new AVL()
-        console.log("Insertado "+nuevo.id);
+        //console.log("Insertado "+nuevo.id);
+
+        //listaMovies.addNewOrdered(nuevo.value);
         
     }
 
     case2(actual,nuevo){
-        console.log("caso 2");
+        //console.log("caso 2");
         //si el valor es mayor que el nodo actual, me voy a da la derecha
         if(nuevo.id>actual.root.id){
             this.addNew(actual.right_son,nuevo);
@@ -132,7 +135,7 @@ class AVL{
     }
 
     case3(actual,nuevo){
-        console.log("Caso 3")
+        //console.log("Caso 3")
         //si el valor ingresado es mayor que el actual, el hijo derecho es nuevo
         if(nuevo.id > actual.root.id){
             this.case1(actual.right_son,nuevo);
@@ -147,7 +150,7 @@ class AVL{
    
 
     case4(actual,nuevo){
-        console.log("Caso 4")
+        //console.log("Caso 4")
         //si el valor ingresado es mayor que actual, hijo derecho es nuevo
         if(nuevo.id > actual.root.id){
             this.case1(actual.right_son,nuevo);
@@ -156,20 +159,20 @@ class AVL{
         //si el valor ingresado es menor que actual y mayor que hijo izquierdo, hijo derecho de hijo izquierdo es nuevo, rotación doble izq-derecha
         else if(nuevo.id < actual.root.id && nuevo.id > actual.left_son.root.id){
             this.case1(actual.left_son.right_son,nuevo);
-            console.log("rotacion doble izq-der")
+            //console.log("rotacion doble izq-der")
             this.rotacionDobleIzqDer(actual);
         }
         //si el valor ingresado es menor que actual y menor que hijo izquierdo, hijo izquierdo de hijo izquierdo es nuevo, rotación simple derecha
         else if(nuevo.id < actual.root.id && nuevo.id < actual.left_son.root.id){
             this.case1(actual.left_son.left_son,nuevo);
-            console.log("rotacion simple der")
+            //console.log("rotacion simple der")
             this.rotacionSimpleDer(actual);
 
         }
     }
 
     case5(actual,nuevo){
-        console.log("Caso 5")
+        //console.log("Caso 5")
         //si el valor es menor que actual, hijo izquierdo es nuevo
         if(nuevo.id < actual.root.id){
             this.case1(actual.left_son,nuevo);
@@ -179,13 +182,13 @@ class AVL{
         else if(nuevo.id > actual.root.id && nuevo.id < actual.right_son.root.id){
             //console.log(actual.right_son.left_son);
             this.case1(actual.right_son.left_son,nuevo);
-            console.log("rotacion doble der-izq")
+            //console.log("rotacion doble der-izq")
             this.rotacionDobleDerIzq(actual)
         }
         //si el valor es mayor que actual y mayor que hijo derecho, hijo derecho de hijo derecho es nuevo, rotación simple izquierda
         else if(nuevo.id > actual.root.id && nuevo.id > actual.right_son.root.id){
             this.case1(actual.right_son.right_son,nuevo);
-            console.log("rotacion simple izq")
+            //console.log("rotacion simple izq")
             this.rotacionSimpleIzq(actual);
         }
     }
@@ -279,7 +282,21 @@ class AVL{
             this.preorder(actual.right_son);
         }
     }
+
+
+    createList(lista){
+        this.crearLista(this,lista);
+    }
        
+
+    crearLista(actual,lista){
+        if(actual.root!=null){
+            listaMovies.addNewOrdered(actual.root.value);
+            this.crearLista(actual.left_son,lista);
+            this.crearLista(actual.right_son,lista);
+        }
+
+    }
     
 
     
@@ -295,7 +312,7 @@ class AVL{
         text+=n[1];
         
         text+="}";
-        console.log(text)
+        //console.log(text)
        
         d3.select('#avl').graphviz()
             .width(600)

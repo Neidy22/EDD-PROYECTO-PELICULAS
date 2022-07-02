@@ -334,7 +334,7 @@ scroll-page {
 
 
 /*-----------------------------------
-        CONTAINERS 
+        CONTAINERS ACTORES Y CATEGORIAS
 -------------------------------------*/
 
 .bloque-actor{
@@ -363,7 +363,58 @@ scroll-page {
 }
 
 
+/*-----------------------------------
+    CONTAINERS PELICULAS
+-------------------------------------*/
 
+.bloque-pelicula{
+    background-color: white;
+    width:95%;
+    margin-left: 2.5%;
+    margin-top: 20px;
+    float: left;
+    background-color: var(--fosfo-fondo1-transparent);
+    
+    
+}
+
+
+
+.titulos-container{
+    border: dashed;
+    width: 15%;
+    margin-left: 5%;
+    margin-top: 5px;
+    float: left;
+    height: 30vh;
+}
+
+.descripcion-container{
+    width:30%;
+    margin-left: 5%;
+    float: left;
+}
+
+
+.info-container , .alquiler-container{
+    float: left;
+    margin-left: 5%;
+    width: 10%;
+    background-color: white;
+    height: 20vh;
+    text-align: center;
+    margin-top: 20px;
+
+}
+
+.precio-container{
+    float: left;
+    margin-left: 5%;
+    margin-top: 10px;
+    padding-top: 40px;
+    
+
+}
 
 
 
