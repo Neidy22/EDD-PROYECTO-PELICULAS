@@ -133,6 +133,7 @@ const admin=new Client(2354168452525,"WIlfred Perez","EDD","wilfredP@gmail.com",
   btnCategorias.addEventListener("click",(e) => {
     e.preventDefault()
     showHideSeccion(document.getElementsByClassName("cliente-container"),'categorias-client');
+    categorys.show();
     
   });
 
@@ -144,9 +145,6 @@ const admin=new Client(2354168452525,"WIlfred Perez","EDD","wilfredP@gmail.com",
   btnActores.addEventListener("click",(e) => {
     e.preventDefault()
     showHideSeccion(document.getElementsByClassName("cliente-container"),'actores-client');
-
-    
-    
     //recorrido in orden
     var inorder=document.getElementById("inorder");
     inorder.addEventListener("click",(e)=>{

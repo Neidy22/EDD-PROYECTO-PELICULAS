@@ -74,6 +74,50 @@ class HashTable{
 
     }
 
+
+    show(){
+        var aux=this.vector.first;
+        var pos=0;
+        while(aux!=null){
+            pos++;
+            var aux2=aux.value.first;
+            if(aux2!=null){
+                while(aux2!=null){
+                    this.createCategoryCont(aux2.value,pos)
+                    aux2=aux2.next;
+                }
+            }
+
+
+            aux=aux.down;
+        }
+
+    }
+
+    createCategoryCont(category,n){
+        const general=document.getElementById("general-categorys");
+
+        const contenedor=document.createElement("div");
+        contenedor.id="category"+n;
+        contenedor.classList="bloque-category";
+  
+        const company=document.createElement("h1");
+        company.classList="subtitle";
+        company.textContent=category.company;
+        
+        const iden=document.createElement("h2");
+        iden.classList="subtitle2";
+        iden.textContent="id: "+category.id;
+
+    
+        contenedor.appendChild(company);
+        contenedor.appendChild(iden);
+     
+        general.appendChild(contenedor);
+  
+    }
+
+
     graph(){
         var text="digraph TablaHash{\n"
         text+="rankdir=LR;\n"

@@ -192,6 +192,9 @@ label{
     width: 150px;
     text-align: left;
     margin-top: 20px;
+    color:var(--subtitle2-text-color);
+   
+   
 }
 
 button{
@@ -342,6 +345,20 @@ scroll-page {
     width:90%;
     margin-left: 5%;
     margin-top: 10px;
+
+}
+
+.bloque-category{
+    float: left;
+    width: 40%;
+    margin-left:6%;
+    margin-top: 10px;
+    background-color: var(--fosfo-fondo1-transparent);
+}
+
+.bloque-category:hover{
+    background-color: var(--fosfo-hover1);
+    color:var(--dark-container-capa1);
 
 }
 

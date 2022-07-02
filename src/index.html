@@ -21,12 +21,12 @@
    
     <form  class="formulario  menuPrincipal" id="formulario" >
         <h1 class="title">LOGIN</h1><br>
-        <h3 class="subtitle">¡Inicia sesión y descubre todo lo nuevo!</h3><br>
-        <label class="subtitle2" for="username">Usuario: </label><br>
+        <h3 class="subtitle2">¡Inicia sesión y descubre todo lo nuevo!</h3><br>
+        <label for="username">Usuario: </label><br>
         <input class="textbox" id="username" type="text" name="nombreUsuario"><br>
-        <label class="subtitle2" for="pass">Contraseña: </label><br>
+        <label  for="pass">Contraseña: </label><br>
         <input class="textbox"id="pass" type="password"><br>
-        <label class="subtitle2"><input type="checkbox" id="rol">Administrador</label><br>
+        <label ><input type="checkbox" id="rol">Administrador</label><br>
         <button  type="submit" id="login" >Iniciar Sesión</button><br>
                 
     </form>
@@ -103,13 +103,17 @@
     </nav>
     <div class="menuCliente cliente-container capa1 title" id="home-client">HOME</div>
     <div class="menuCliente cliente-container capa1 title" id="movies-client">PELICULAS</div>
-    <div class="menuCliente cliente-container capa1 title" id="categorias-client">CATEGORIAS</div>
+
+    <section class="menuCliente cliente-container capa1" id="categorias-client">
+        <h1 class="title">CATEGORIAS</h1>
+        <div class="categorias-container" id="general-categorys">
+        </div>
+    </section>
+
     <section class="menuCliente cliente-container capa1" id="actores-client">
         <h1 class="title">ACTORES</h1>
         <div class="actores-container" id="general-actors">
-
         </div>
-
     </section>
 
      
