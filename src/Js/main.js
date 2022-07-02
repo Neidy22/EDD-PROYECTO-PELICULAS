@@ -6,15 +6,15 @@ import HashTable from "../Structures/HashTable.js";
 import AVL from "../Structures/AVL.js";
 
 const clients=new SimpleList();
-export {clients};
+
 const actors=new BinaryTree();
-export {actors};
+//export {actors};
 const categorys=new HashTable(20);
-export {categorys};
+//export {categorys};
 const movies=new AVL();
-export {movies};
+//export {movies};
 const listaMovies=new SimpleList();
-export {listaMovies};
+//export {listaMovies};
 
 var user;
 
@@ -192,7 +192,10 @@ const admin=new Client(2354168452525,"WIlfred Perez","EDD","wilfredP@gmail.com",
   });
 
 
-
+ /*-------------------------------------------------------
+    Codigo para activar vista pelicula especifica
+  --------------------------------------------------------*/
+  
 
 
   
@@ -240,3 +243,4 @@ const admin=new Client(2354168452525,"WIlfred Perez","EDD","wilfredP@gmail.com",
     }
 
     
+export {clients,actors,categorys,movies,listaMovies,deleteContainerElements,showHideSeccion,showHide}

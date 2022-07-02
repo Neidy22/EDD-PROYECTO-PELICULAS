@@ -297,6 +297,24 @@ class AVL{
         }
 
     }
+
+    search(ide){
+        this.searchPre(this,ide);
+
+    }
+
+    searchPre(actual,id){
+        if(actual.root!=null){
+            if(actual.root.id==id){
+                return actual.root.value;
+            }
+            this.search(actual.left_son,id);
+            this.search(actual.right_son,id);
+        }
+
+    }
+
+
     
 
     

@@ -1,4 +1,63 @@
 import Node from "../Objects/Node.js";
+//import {deleteContainerElements,showHideSeccion} from "../Js/main.js";
+
+function viewMovie(pelicula){
+    //var pelicula=movies.search(id);
+    //console.log("ya busque"+id)
+
+    const general = document.getElementById("specific-movie-info");
+    deleteContainerElements(general);
+
+    //creo el div con la información
+    const peli = document.createElement("div");
+    peli.id="info-pelicula";
+
+    const titulo = document.createElement("h1");
+    titulo.classList="title";
+    titulo.textContent = pelicula.name;
+
+    const desc = document.createElement("h2");
+    desc.classList="subtitle";
+    desc.textContent="Descripción:"
+
+    const contenidoD = document.createElement("p");
+    contenidoD.classList="text";
+    contenidoD.textContent=pelicula.description;
+
+    peli.appendChild(titulo);
+    peli.appendChild(desc);
+    peli.appendChild(contenidoD);
+
+      //creo el div para editar la información
+
+
+      //creo el div para los comentarios
+
+    general.appendChild(peli);
+      //muestro la sección con los datos encontrados
+    showHideSeccion(document.getElementsByClassName("cliente-container"),'movies-client');
+
+
+};
+
+function deleteContainerElements(container){
+    while(container.firstChild){
+        container.removeChild(container.firstChild);
+       }
+};
+  
+function showHideSeccion(clase,id){
+    var i;
+    for(i=0; i<clase.length; i++){
+      //console.log(clase[i].getAttribute('id'));
+      //console.log(id);
+      if(clase[i].getAttribute('id')==id){
+        clase[i].style.display='block';
+      }else{
+        clase[i].style.display='none';
+      }
+    }
+};
 
 
 class SimpleList{
@@ -173,6 +232,43 @@ class SimpleList{
         //boton para ver la información de una película
         const btnInfo=document.createElement("a");
         btnInfo.href="#";
+        btnInfo.onclick=function(){
+            viewMovie(pelicula);
+
+            /*
+            const general = document.getElementById("specific-movie-info");
+            deleteContainerElements(general);
+    
+            //creo el div con la información
+            const peli = document.createElement("div");
+            peli.id="info-pelicula";
+    
+            const titulo = document.createElement("h1");
+            titulo.classList="title";
+            titulo.textContent = pelicula.name;
+    
+            const desc = document.createElement("h2");
+            desc.classList="subtitle";
+            desc.textContent="Descripción:"
+    
+            const contenidoD = document.createElement("p");
+            contenidoD.classList="text";
+            contenidoD.textContent=pelicula.description;
+    
+            peli.appendChild(titulo);
+            peli.appendChild(desc);
+            peli.appendChild(contenidoD);
+    
+            //creo el div para editar la información
+    
+    
+            //creo el div para los comentarios
+    
+            general.appendChild(peli);
+            //muestro la sección con los datos encontrados
+            showHideSeccion(document.getElementsByClassName("cliente-container"),'movies-client');
+            */
+        };
         //span para el icono del INFO
         const icono1=document.createElement("span");
         icono1.classList="material-icons";
@@ -196,7 +292,6 @@ class SimpleList{
         
 
         
-
         btnAlqui.appendChild(icono2);
         alquilar.appendChild(btnAlqui);
 
@@ -218,7 +313,9 @@ class SimpleList{
   
     }
 
+    
    
+    
 
 }
 
