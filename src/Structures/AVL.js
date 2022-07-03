@@ -18,8 +18,8 @@ class AVL{
         nuevo.id=data.id;
         nuevo.name=data.name;
         this.addNew(this,nuevo);
-        this.balanceado(this,nuevo);
-        this.equilibrar(this,nuevo);
+        //this.balanceado(this,nuevo);
+        //this.equilibrar(this,nuevo);
         
 
     }
@@ -71,13 +71,13 @@ class AVL{
 
     }
 
-  /*
+  
     addNew(temp,nuevo){
         
         //casos que pueden ocurrir en la inserción de un nuevo nodo
         //console.log(temp);
         //si el nodo actual es nulo
-        temp.altura=this.heighTree(temp);
+        //temp.altura=this.heighTree(temp);
 
         if(temp.root==null){
             this.case1(temp,nuevo);
@@ -110,8 +110,8 @@ class AVL{
 
     }
 
-*/
 
+/*
     addNew(temp,nuevo,n){
         temp.altura=this.heighTree(temp)+1;
        
@@ -132,7 +132,7 @@ class AVL{
     }
 
 
-
+*/
 
     balanceado(actual,nuevo){
         if(actual.root != null){
@@ -277,26 +277,17 @@ class AVL{
     rotacionSimpleDer(actual){
         var a=actual.root;
         var b=actual.left_son.root;
-        var c=actual.left_son.left_son;
+        var c=actual.left_son.left_son.root;
 
         actual.root=b;
-        //actual.left_son.root=c;
-        actual.right_son.root=a;
-        //this.case1(actual.right_son,a);
+        actual.left_son.root=c;
+        this.case1(actual.right_son,a);
 
-        
+        actual.left_son.left_son.root=null;
 
-        //actual.left_son.left_son.root=null;
-        /*
-        if(actual.left_son.left_son.left_son == null && actual.left_son.left_son.right_son == null){
-            actual.left_son.left_son.root=null;
-        }*/
-        return c;
 
-        
 
     }
-
 
     rotacionSimpleIzq(actual){
         var a=actual.root;
@@ -304,16 +295,10 @@ class AVL{
         var c=actual.right_son.right_son.root;
 
         actual.root=b;
-        //this.case1(actual.left_son,a);
-        actual.left_son=a;
+        this.case1(actual.left_son,a);
         actual.right_son.root=c;
 
-        //actual.right_son.right_son.root=null;
-       /* if(actual.right_son.right_son.left_son == null && actual.right_son.right_son.right_son == null){
-            actual.right_son.right_son.root=null;
-        }*/
-        return a;
-
+        actual.right_son.right_son.root=null;
     }
 
     rotacionDobleDerIzq(actual){
@@ -321,19 +306,13 @@ class AVL{
         var b=actual.right_son.root;
         var c=actual.right_son.left_son.root;
 
-    
+
         actual.root=c;
-        actual.left_son.root=a;
-        actual.right_son.root=b;
-        //this.case1(actual.left_son,a);
+        this.case1(actual.left_son,a);
 
-        //actual.right_son.left_son.root=null;
+        actual.right_son.left_son.root=null;
 
-        /*if(actual.right_son.left_son.left_son == null && actual.right_son.left_son.right_son== null){
-            actual.right_son.left_son.root=null;
-        }*/
-   
-     
+
 
     }
 
@@ -344,15 +323,12 @@ class AVL{
 
         actual.root=c;
         actual.left_son.root=b;
-        actual.right_son.root=a;
-        //this.case1(actual.right_son,a);
-        /*
-        if(actual.left_son.right_son.left_son == null && actual.left_son.right_son.right_son == null){
-            actual.left_son.right_son.root = null;
-        }*/
-        //actual.left_son.right_son.root=null;
+        this.case1(actual.right_son,a);
+
+        actual.left_son.right_son.root=null;
 
     }
+
 
 
     heighTree(actual){
