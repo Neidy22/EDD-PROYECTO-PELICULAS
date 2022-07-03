@@ -170,7 +170,7 @@ class AVL{
                     this.rotacionDobleIzqDer(actual);
                 }else if(nuevo.id < actual.left_son.root.id){
                     console.log("giro simple derecha")
-                    actual.left_son=this.rotacionSimpleDer(actual);
+                    this.rotacionSimpleDer(actual);
                 }
 
             }
@@ -305,13 +305,14 @@ class AVL{
 
         actual.root=b;
         //this.case1(actual.left_son,a);
-        actual.left_son.root=a;
+        actual.left_son=a;
         actual.right_son.root=c;
 
         //actual.right_son.right_son.root=null;
        /* if(actual.right_son.right_son.left_son == null && actual.right_son.right_son.right_son == null){
             actual.right_son.right_son.root=null;
         }*/
+        return a;
 
     }
 
