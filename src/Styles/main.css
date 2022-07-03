@@ -40,7 +40,7 @@ body{
 }
 
 #logo, #logo1, #logo2{
-    background-image: url(/src/Styles/img/logo.png);
+    /*background-image: url(/src/Styles/img/logo.png);*/
     height: 100px;
     width:100px;
     position: left;
@@ -468,7 +468,7 @@ scroll-page {
     height: 80px;
     text-align: end;
     float: left;
-    background-image: url("../Styles/img/carrito.gif");
+    /*background-image: url("../Styles/img/carrito.gif");*/
     background-size: cover;
 }
 
