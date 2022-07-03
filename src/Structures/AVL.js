@@ -7,6 +7,9 @@ class AVL{
         this.left_son=null;
         this.right_son=null;
         this.levels=0
+        this.altura=0;
+        this.equilibrio=0;
+        this.nodos=0;
         
     }
 
@@ -15,6 +18,9 @@ class AVL{
         nuevo.id=data.id;
         nuevo.name=data.name;
         this.addNew(this,nuevo);
+        this.balanceado(this,nuevo);
+        this.equilibrar(this,nuevo);
+        
 
     }
 
@@ -65,12 +71,14 @@ class AVL{
 
     }
 
-  
+  /*
     addNew(temp,nuevo){
         
         //casos que pueden ocurrir en la inserción de un nuevo nodo
         //console.log(temp);
         //si el nodo actual es nulo
+        temp.altura=this.heighTree(temp);
+
         if(temp.root==null){
             this.case1(temp,nuevo);
         }
@@ -102,14 +110,85 @@ class AVL{
 
     }
 
+*/
 
+    addNew(temp,nuevo,n){
+        temp.altura=this.heighTree(temp)+1;
+       
+
+        if(temp.root == null ){
+            this.case1(temp,nuevo); 
+        }
+        else if(nuevo.id > temp.root.id){
+            // a la derecha
+            this.addNew(temp.right_son,nuevo,n++);
+       
+        }else if(nuevo.id < temp.root.id){
+            // a la izquierda
+            this.addNew(temp.left_son,nuevo,n++);
+            
+        }
+
+    }
+
+
+
+
+    balanceado(actual,nuevo){
+        if(actual.root != null){
+            l=actual.left_son.altura;
+            r=actual.right_son.altura;
+
+            actual.equilibrio=l-r;
+            this.balanceado(actual.left_son,nuevo);
+            this.balanceado(actual.right_son,nuevo);
+            var l,r;
+            
+        }
+
+    }
+
+    equilibrar(actual,nuevo){
+        if(actual.root != null ){
+
+            this.equilibrar(actual.left_son,nuevo);
+            this.equilibrar(actual.right_son,nuevo);
+            console.log(actual.root.id+" Eq"+actual.equilibrio);
+
+            if(actual.equilibrio == -2){
+                if(nuevo.id > actual.right_son.root.id){
+                    console.log("giro doble d-i")
+                    this.rotacionDobleDerIzq(actual);
+                }else if(nuevo.id < actual.right_son.root.id){
+                    console.log("giro simple iz")
+                    this.rotacionSimpleIzq(actual);
+                }
+
+            }else if(actual.equilibrio == 2){
+                if(nuevo.id > actual.left_son.root.id){
+                    console.log("giro doble iz-de")
+                    this.rotacionDobleIzqDer(actual);
+                }else if(nuevo.id < actual.left_son.root.id){
+                    console.log("giro simple derecha")
+                    actual.left_son=this.rotacionSimpleDer(actual);
+                }
+
+            }
+        }
+
+
+    }
+
+ 
     case1(actual,nuevo){
         //console.log("caso 1");
         //el nodo actual es nuevo
         actual.root=nuevo
         actual.left_son=new AVL()
         actual.right_son=new AVL()
-        //console.log("Insertado "+nuevo.id);
+        this.nodos++;
+        this.levels++;
+        console.log("Insertado "+nuevo.id);
 
         //listaMovies.addNewOrdered(nuevo.value);
         
@@ -198,17 +277,26 @@ class AVL{
     rotacionSimpleDer(actual){
         var a=actual.root;
         var b=actual.left_son.root;
-        var c=actual.left_son.left_son.root;
+        var c=actual.left_son.left_son;
 
         actual.root=b;
-        actual.left_son.root=c;
-        this.case1(actual.right_son,a);
+        //actual.left_son.root=c;
+        actual.right_son.root=a;
+        //this.case1(actual.right_son,a);
 
-        actual.left_son.left_son.root=null;
+        
+
+        //actual.left_son.left_son.root=null;
+        /*
+        if(actual.left_son.left_son.left_son == null && actual.left_son.left_son.right_son == null){
+            actual.left_son.left_son.root=null;
+        }*/
+        return c;
 
         
 
     }
+
 
     rotacionSimpleIzq(actual){
         var a=actual.root;
@@ -216,10 +304,15 @@ class AVL{
         var c=actual.right_son.right_son.root;
 
         actual.root=b;
-        this.case1(actual.left_son,a);
+        //this.case1(actual.left_son,a);
+        actual.left_son.root=a;
         actual.right_son.root=c;
 
-        actual.right_son.right_son.root=null;
+        //actual.right_son.right_son.root=null;
+       /* if(actual.right_son.right_son.left_son == null && actual.right_son.right_son.right_son == null){
+            actual.right_son.right_son.root=null;
+        }*/
+
     }
 
     rotacionDobleDerIzq(actual){
@@ -229,9 +322,15 @@ class AVL{
 
     
         actual.root=c;
-        this.case1(actual.left_son,a);
+        actual.left_son.root=a;
+        actual.right_son.root=b;
+        //this.case1(actual.left_son,a);
 
-        actual.right_son.left_son.root=null;
+        //actual.right_son.left_son.root=null;
+
+        /*if(actual.right_son.left_son.left_son == null && actual.right_son.left_son.right_son== null){
+            actual.right_son.left_son.root=null;
+        }*/
    
      
 
@@ -244,12 +343,28 @@ class AVL{
 
         actual.root=c;
         actual.left_son.root=b;
-        this.case1(actual.right_son,a);
-
-        actual.left_son.right_son.root=null;
+        actual.right_son.root=a;
+        //this.case1(actual.right_son,a);
+        /*
+        if(actual.left_son.right_son.left_son == null && actual.left_son.right_son.right_son == null){
+            actual.left_son.right_son.root = null;
+        }*/
+        //actual.left_son.right_son.root=null;
 
     }
 
+
+    heighTree(actual){
+        if(actual.root == null){
+            return 0
+        }
+
+        return 1 + Math.max(this.heighTree(actual.left_son),this.heighTree(actual.right_son));
+
+    }
+
+
+    
 
     preorderGraph(actual,nodes){
         if(actual.root!=null){
